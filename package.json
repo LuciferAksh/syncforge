@@ -1,0 +1,51 @@
+{
+  "name": "syncforge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline-first collaborative Markdown with durable CRDT synchronization",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.server.json && tsc -p tsconfig.web.json && vite build && node scripts/service-worker.mjs",
+    "dev": "npm run build && node scripts/seed.mjs && node dist/server/index.js",
+    "start": "node dist/server/index.js",
+    "dev:web": "vite --host 127.0.0.1",
+    "seed": "node scripts/seed.mjs",
+    "pretest": "tsc -p tsconfig.server.json",
+    "test": "tsx --test --test-concurrency=1 tests/*.test.ts",
+    "verify": "node --import tsx scripts/verify.mjs",
+    "format": "prettier --write src web tests scripts docs README.md CONTRIBUTING.md *.json vite.config.ts .github/workflows/ci.yml",
+    "format:check": "prettier --check src web tests scripts docs README.md CONTRIBUTING.md *.json vite.config.ts .github/workflows/ci.yml"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.8.1",
+    "@codemirror/lang-markdown": "^6.3.2",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.36.5",
+    "@fontsource/dm-sans": "^5.2.0",
+    "@fontsource/ibm-plex-mono": "^5.2.0",
+    "lib0": "^0.2.120",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "ws": "^8.18.0",
+    "y-codemirror.next": "^0.3.5",
+    "y-protocols": "^1.0.6",
+    "yjs": "^13.6.27"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/ws": "^8.18.1",
+    "@vitejs/plugin-react": "^4.4.0",
+    "fake-indexeddb": "^6.2.8",
+    "prettier": "^3.6.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.0"
+  }
+}
